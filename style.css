@@ -51,6 +51,12 @@ h2 {
     font-size: 30px;
 }
 
+.button__hover:hover {
+    color: black;
+    border: solid 3px #6030b1;
+    background-color: antiquewhite;
+}
+
 
 
 /* --- Navigation Bar Style --- */
@@ -78,14 +84,38 @@ h2 {
     margin-left: 48px;
 }
 
+.nav__link--hover {
+    position: relative;
+}
+
+.nav__link--hover:after {
+    content: "";
+    position: absolute;
+    background-color: #6030b1;
+    border-color: #6030b1;
+    bottom: -2px;
+    right: 0;
+    height: 3px;
+    width: 0;
+    transition: all 300ms ease;
+}
+
+.nav__link--hover:hover:after {
+    left: 0;
+    width: 100%;
+}
+
 .nav__button {
     font-size: 20px;
+    font-weight: 550;
+    letter-spacing: 2px;
     color: white;
     background-color: #6030b1;
-    padding: 16px 48px;
-    border: solid 1px #6030b1;
+    padding: 8px 48px;
+    border: solid 3px #6030b1;
     border-radius: 50px;
     margin-left: 48px;
+    transition: all 300ms ease-in-out
 }
 
 
@@ -169,18 +199,24 @@ h2 {
     border-radius: 25px;
 }
 
-.landing__search--icon {
+.landing__search--button {
     width: 25%;
     margin: 14px 0 14px 16px;
     border-radius: 25px;
     height: 70px;
-    border: solid 2px #6030b1;
+    border: solid 3px #6030b1;
     background-color: #6030b1;
+    transition: all 300ms ease;
 }
 
 .fa-magnifying-glass {
-    color: white;
+    color: antiquewhite;
     font-size: 32px;
+    transition: all 300ms ease;
+}
+
+.landing__search--button:hover .fa-magnifying-glass { /* need to target the icon from parent hover */
+    color: #6030b1; /* or any color you want on hover */
 }
 
 .landing__img--wrapper {
