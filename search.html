@@ -1,11 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
     <title>Car Subscription Platform for Dealerships | Search</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/12ab20141a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <nav id="search__navigation">
+      <div class="search__navbar">
+        <div class="container search__navbar--container">
+          <div class="row navbar">
+            <div class="search__navbar--row">
+              <figure class="nav__logos">
+                <a href="index.html" target="_blank">
+                  <img src="./assets/whitelogo.39850b27.png" class="nav__img" />
+                </a>
+              </figure>
+              <div>
+                <ul class="nav__links">
+                  <li class="nav__link nav__link--hover">
+                    <a href="#" class="font__white">Home</a>
+                  </li>
+                  <li class="nav__link nav__link--hover">
+                    <a href="#" class="font__white">Find Your Car</a>
+                  </li>
+                  <button class="nav__button button__hover">Contact</button>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="search__input--row">
+            <h1 class="search__title">Browse our cars</h1>
+            <input
+              class="search__input"
+              type="text"
+              placeholder="Search by Model, Make or Keyword"
+            />
+            <button>
+              <i class="fa-solid fa-magnifying-glass search__icon--color"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section id="search">
+      <div class="search__container">
+        <div class="search__row">
+          <div class="search__progress-bar">
+            <div class="search__progress-bar--track">line 1</div>
+            <div class="search__progress-bar--fill">line 2</div>
+            <div class="search__progress-bar--buffer">line 3</div>
+          </div>
+        </div>
+        <div class="search__results--container">
+          <div class="search__results--row">
+            <div class="search__results--title">
+              <h2>Search Results:</h2>
+            </div>
+            <div class="search__price--filter">
+              <h3>
+                Price range: <span class="theme__color">$0 to $100,000</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="search__results--output">line 6</div>
+      </div>
+    </section>
+  </body>
 </html>

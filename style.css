@@ -15,6 +15,7 @@ html {
     width: 100%;
     max-width: 1200px;
     margin: auto;
+    position: relative;
 }
 
 .row {
@@ -57,6 +58,10 @@ h2 {
     background-color: antiquewhite;
 }
 
+.font__white {
+    color: white;
+}
+
 
 
 /* --- Navigation Bar Style --- */
@@ -64,7 +69,10 @@ h2 {
 
 
 .navbar {
+    width: 100%;
     height: 10vh;
+    margin: auto;
+    position: relative;    
 }
 
 .nav__img {
@@ -292,4 +300,134 @@ h2 {
 
 .landing__img--wheel-2 {
     right: 345px;
+}
+
+
+
+/* --- Search Page Styles --- */
+/* --- Search Page Navigation Styles --- */
+
+
+
+.search__navbar {
+    width: 100%;
+    height: auto;
+    padding-bottom: 40px;
+    background-image: url(https://dev.d24jig8s1lr7n9.amplifyapp.com/img/carpark.8742e246.jpeg);
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.search__navbar::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* covers the whole navbar */
+    background-color: #2b1158be;
+    z-index: 0;
+}
+
+.search__navbar--row {
+    width: 100%;
+    padding: 16px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.search__navbar--container {
+    width: 100%;
+}
+
+.navbar__background-image {
+    position: absolute;
+}
+
+.search__input--row {
+    text-align: center;
+    position: relative;
+}
+
+.search__title {
+    color: white;
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.search__input {
+    margin-top: 40px;
+    font-size: 24px;
+    width: 100%;
+    max-width: 600px;
+    height: 70px;
+    padding: 0 16px;
+    border-radius: 50px;
+}
+
+.search__icon--color {
+    color: #6030b1;
+    position: absolute;
+    right: 325px;
+    bottom: 20px;
+}
+
+
+
+/* --- Search Page Search Styles --- */
+
+
+
+#search {
+    width: 100vw;
+}
+
+.search__container {
+    width: 100vw;
+    margin: 0;
+    border: solid 1px black;
+}
+
+.search__row {
+    width: 100%;
+    text-align: center;
+    border: solid 1px black;
+}
+
+.search__progress-bar {
+    width: 100%;
+}
+
+.search__progress-bar--track {
+    width: 100%;
+}
+
+.search__progress-bar--fill {
+    width: 100%;
+}
+
+.search__progress-bar--update {
+    width: 100%;
+}
+
+.search__results--container {
+    margin: 24px 48px;
+}
+
+.search__results--row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px black;
+}
+
+.search__price--filter {
+    margin-bottom: 16px;
+    padding: 0 24px;
+}
+
+.search__results--output {
+    text-align: center;
 }
