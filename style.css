@@ -191,7 +191,8 @@ h2 {
 
 .landing__img--car-wrapper {
     visibility: hidden;
-    animation: carslidein 6s ease-out 1s forwards;
+    animation: carslidein 2000ms ease-out 1s forwards,
+    carslideout 2000ms ease-in 10000ms forwards;
 }
 
 @keyframes carslidein {
@@ -203,6 +204,16 @@ h2 {
     100% {
         visibility: visible;
         transform: translateX(0)
+    }
+}
+
+@keyframes carslideout {
+    0% {
+        transform: translateX(10)
+    }
+
+    100% {
+        transform: translateX(-100vw)
     }
 }
 
