@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Car Subscription Platform for Dealerships | Search</title>
     <link rel="stylesheet" href="style.css" />
     <script
@@ -10,7 +10,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="index.js" defer></script>
+    <script src="search.js" defer></script>
   </head>
+
   <body>
     <nav id="search__navigation">
       <div class="search__navbar">
@@ -22,29 +24,30 @@
                   <img src="./assets/whitelogo.39850b27.png" class="nav__img" />
                 </a>
               </figure>
-              <div>
+              <div class="nav__links--row">
                 <ul class="nav__links">
-                  <li class="nav__link nav__link--hover">
-                    <a href="#" class="font__white">Home</a>
+                  <li class="nav__link nav__link--hover nav__link--hover-white">
+                    <a href="index.html" target="_blank" class="font__white">Home</a>
                   </li>
-                  <li class="nav__link nav__link--hover">
+                  <li class="nav__link nav__link--hover nav__link--hover-white">
                     <a href="#" class="font__white">Find Your Car</a>
                   </li>
-                  <button class="nav__button button__hover">Contact</button>
                 </ul>
+                <button class="nav__button button__hover">Contact</button>
               </div>
             </div>
           </div>
           <div class="search__input--row">
             <h1 class="search__title">Browse our cars</h1>
-            <input
+            <div class="search__input--wrapper">
+              <input
               class="search__input"
               type="text"
-              placeholder="Search by Model, Make or Keyword"
-            />
-            <button>
-              <i class="fa-solid fa-magnifying-glass search__icon--color"></i>
-            </button>
+              placeholder="Search by Model, Make or Keyword"/>
+              <button class="search__icon--button button__hover">
+                  <i class="fa-solid fa-magnifying-glass search__icon--position search__icon--color"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -64,14 +67,45 @@
             <div class="search__results--title">
               <h2>Search Results:</h2>
             </div>
-            <div class="search__price--filter">
-              <h3>
-                Price range: <span class="theme__color">$0 to $100,000</span>
-              </h3>
+            <div class="search__price-filter--wrapper">
+              <div class="search__price-filter--title-row">
+                <label class="search__price-filter--title" for="minRange">Price Range Filter:</label>
+                <div class="search__price-filter--range">
+                  <span class="theme__color" id="rangeMin">$0</span> -
+                  <span class="theme__color" id="rangeMax">$100,000</span>
+                </div>
+              </div>
+
+              <div class="search__slider--wrapper">
+                <div class="search__sliders">
+                  <div class="search__slider">
+                    <input class="search__slider--range"
+                      type="range"
+                      id="minRange"
+                      min="0"
+                      max="100000"
+                      value="0"
+                      aria-label="Minimum Value"
+                    />
+                    <input class="search__slider--range"
+                      type="range"
+                      id="maxRange"
+                      min="0"
+                      max="100000"
+                      value="100000"
+                      aria-label="Maximum Value"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="search__price-range--labels">
+                <h4 class="search__price-range--label-1">$0</h4>
+                <h4 class="search__price-range--label-2">$100,000</h4>
+              </div>
             </div>
           </div>
+          <div class="search__results--output">line 6</div>
         </div>
-        <div class="search__results--output">line 6</div>
       </div>
     </section>
   </body>
