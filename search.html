@@ -27,7 +27,9 @@
               <div class="nav__links--row">
                 <ul class="nav__links">
                   <li class="nav__link nav__link--hover nav__link--hover-white">
-                    <a href="index.html" target="_blank" class="font__white">Home</a>
+                    <a href="index.html" target="_blank" class="font__white"
+                      >Home</a
+                    >
                   </li>
                   <li class="nav__link nav__link--hover nav__link--hover-white">
                     <a href="#" class="font__white">Find Your Car</a>
@@ -41,11 +43,14 @@
             <h1 class="search__title">Browse our cars</h1>
             <div class="search__input--wrapper">
               <input
-              class="search__input"
-              type="text"
-              placeholder="Search by Model, Make or Keyword"/>
+                class="search__input"
+                type="text"
+                placeholder="Search by Model, Make or Keyword"
+              />
               <button class="search__icon--button button__hover">
-                  <i class="fa-solid fa-magnifying-glass search__icon--position search__icon--color"></i>
+                <i
+                  class="fa-solid fa-magnifying-glass search__icon--position search__icon--color"
+                ></i>
               </button>
             </div>
           </div>
@@ -55,56 +60,93 @@
 
     <section id="search">
       <div class="search__container">
-        <div class="search__row">
-          <div class="search__progress-bar">
-            <div class="search__progress-bar--track">line 1</div>
-            <div class="search__progress-bar--fill">line 2</div>
-            <div class="search__progress-bar--buffer">line 3</div>
-          </div>
-        </div>
-        <div class="search__results--container">
+        <div class="search__results--container hide__search">
           <div class="search__results--row">
             <div class="search__results--title">
               <h2>Search Results:</h2>
             </div>
-            <div class="search__price-filter--wrapper">
-              <div class="search__price-filter--title-row">
-                <label class="search__price-filter--title" for="minRange">Price Range Filter:</label>
-                <div class="search__price-filter--range">
-                  <span class="theme__color" id="rangeMin">$0</span> -
-                  <span class="theme__color" id="rangeMax">$100,000</span>
-                </div>
+            <select id="filter" class="search__sort" onchange="filterMovies()">
+              <option value="" disabled selected>Sort</option>
+              <option value="TITLE">Title (Ascending)</option>
+              <option value="TITLE">Title (Descending)</option>
+              <option value="YEAR">Year (Ascending)</option>
+              <option value="YEAR">Year (Descending)</option>
+            </select>
+          </div>
+          <div class="search__results--output search__results--hidden">
+            <div class="search__results--wrapper">
+              <div class="search__result--box">
+                <figure class="search__result--img">
+                  <img
+                    src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+                    alt=""
+                  />
+                </figure>
+                <h1 class="search__result--title">Inception</h1>
+                <h2 class="search__result--year">2010</h2>
               </div>
-
-              <div class="search__slider--wrapper">
-                <div class="search__sliders">
-                  <div class="search__slider">
-                    <input class="search__slider--range"
-                      type="range"
-                      id="minRange"
-                      min="0"
-                      max="100000"
-                      value="0"
-                      aria-label="Minimum Value"
-                    />
-                    <input class="search__slider--range"
-                      type="range"
-                      id="maxRange"
-                      min="0"
-                      max="100000"
-                      value="100000"
-                      aria-label="Maximum Value"
-                    />
-                  </div>
-                </div>
+              <div class="search__result--box">
+                <figure class="search__result--img">
+                  <img
+                    src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+                    alt=""
+                  />
+                </figure>
+                <h1 class="search__result--title">Inception</h1>
+                <h2 class="search__result--year">2010</h2>
               </div>
-              <div class="search__price-range--labels">
-                <h4 class="search__price-range--label-1">$0</h4>
-                <h4 class="search__price-range--label-2">$100,000</h4>
+              <div class="search__result--box">
+                <figure class="search__result--img">
+                  <img
+                    src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+                    alt=""
+                  />
+                </figure>
+                <h1 class="search__result--title">Inception</h1>
+                <h2 class="search__result--year">2010</h2>
+              </div>
+              <div class="search__result--box">
+                <figure class="search__result--img">
+                  <img
+                    src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+                    alt=""
+                  />
+                </figure>
+                <h1 class="search__result--title">Inception</h1>
+                <h2 class="search__result--year">2010</h2>
+              </div>
+              <div class="search__result--box">
+                <figure class="search__result--img">
+                  <img
+                    src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+                    alt=""
+                  />
+                </figure>
+                <h1 class="search__result--title">Inception</h1>
+                <h2 class="search__result--year">2010</h2>
+              </div>
+              <div class="search__result--box">
+                <figure class="search__result--img">
+                  <img
+                    src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+                    alt=""
+                  />
+                </figure>
+                <h1 class="search__result--title">Inception</h1>
+                <h2 class="search__result--year">2010</h2>
+              </div>
+              <div class="search__result--box">
+                <figure class="search__result--img">
+                  <img
+                    src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+                    alt=""
+                  />
+                </figure>
+                <h1 class="search__result--title">Inception</h1>
+                <h2 class="search__result--year">2010</h2>
               </div>
             </div>
           </div>
-          <div class="search__results--output">line 6</div>
         </div>
       </div>
     </section>
