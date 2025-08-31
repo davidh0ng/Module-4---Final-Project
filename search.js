@@ -42,7 +42,7 @@ async function movieSearchResult(userInput, sortBy) {
 
   const movieListHTML = movieArray
     .map((movie) => {
-      return `<div class="search__result--box">
+      return `<div class="search__result--box search__hover--effect">
                 <figure class="search__result--img">
                   <img
                     src="${movie.Poster}"

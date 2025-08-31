@@ -71,7 +71,6 @@ h2 {
 }
 
 
-
 /* --- Navigation Bar Style --- */
 
 
@@ -107,6 +106,16 @@ h2 {
 
 .nav__link--hover {
     position: relative;
+    transition: all 300ms ease;
+}
+
+.nav__link--hover:hover {
+    transform: scale(1.1);
+    transition: all 300ms ease;
+}
+
+.nav__link--hover:active {
+    transform: scale(1);
 }
 
 .nav__link--hover:after {
@@ -147,6 +156,10 @@ h2 {
     border-radius: 50px;
     margin-left: 48px;
     transition: all 300ms ease-in-out
+}
+
+.nav__button:active {
+    transform: scale(0.8);
 }
 
 
@@ -250,79 +263,8 @@ h2 {
     color: #6030b1; /* or any color you want on hover */
 }
 
-.landing__img--wrapper {
-    max-width: max-content;
-    height: 50vh;
-    position: relative;
-}
-
-.landing__img--car-wrapper {
-    visibility: hidden;
-    animation: carslidein 2000ms ease-out 1s forwards,
-    carslideout 2000ms ease-in 10000ms forwards;
-}
-
-@keyframes carslidein {
-    0% {
-        visibility: visible;
-        transform: translateX(100vw)
-    }
-
-    100% {
-        visibility: visible;
-        transform: translateX(0)
-    }
-}
-
-@keyframes carslideout {
-    0% {
-        transform: translateX(10)
-    }
-
-    100% {
-        transform: translateX(-100vw)
-    }
-}
-
-.landing__img--car {
-    position: absolute;
-    width: 50%;
-    bottom: 0px;
-    right: 300px;
-    animation: carbounce 600ms ease infinite alternate-reverse;
-}
-
-@keyframes carbounce {
-    0% {
-        transform: translateY(0)
-    }
-
-    20%  {
-        transform: translateY(-1px)
-    }
-
-    60%  {
-        transform: translateY(0)
-    }
-
-    100% {
-        transform: translateY(-1px)
-    }
-}
-
-.landing__img--wheels {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 12.5%;
-}
-
-.landing__img--wheel-1 {
-    right: 665px;
-}
-
-.landing__img--wheel-2 {
-    right: 345px;
+.landing__img {
+    height: 45vh;
 }
 
 
@@ -418,14 +360,14 @@ h2 {
 }
 
 .search__title {
-    margin-bottom: 48px;
+    margin-bottom: 24px;
 }
 
 .search__input--row {
     width: 100%;
     max-width: 1000px;
     margin: auto;
-    padding: 0 24px;
+    padding-top: 48px;
     text-align: center;
 }
 
@@ -518,7 +460,7 @@ h2 {
 
 .search__result--box {
     width: 20vh;
-    height: 36vh;
+    height: 35vh;
     border: solid 2px;
     border-radius: 25px;
     overflow: hidden;
@@ -528,6 +470,19 @@ h2 {
     justify-content: space-between;
     margin: 0 16px 32px 16px;
     text-align: center;
+    transition: all 300ms ease;
+}
+
+.search__hover--effect:hover {
+    border: solid 8px;
+    transform: scale(1.05);
+    transition: all 300ms ease;
+}
+
+
+.search__hover--effect:hover .search__result--title,
+.search__hover--effect:hover .search__result--year {
+    font-size: 20px;
 }
 
 .search__result--img {
@@ -536,18 +491,15 @@ h2 {
     overflow: hidden;
 }
 
-.search__result--title,
-.search__result--year {
-    padding: 0 12px;
-}
 
 .search__result--title {
     font-size: 16px;
+    margin-top: 24px;
 }
 
 .search__result--year {
-    margin-bottom: 16px;
     font-size: 16px;
+    margin: 24px 0;
 }
 
 .search__no-result {
