@@ -19,6 +19,7 @@ async function movieSearchResult(userInput) {
   const movieList = await getMovies.json();
 
   if (movieList.Response === "False") {
+    movieWrapper.innerHTML = `<p class="search__no-result">No movies found.</p>`;
     return;
   }
 
@@ -40,4 +41,9 @@ async function movieSearchResult(userInput) {
     .join("");
 
   movieWrapper.innerHTML = movieListHTML;
+}
+
+function sortMovies(event) {
+    const filter = event.target.value;
+    return filter;
 }

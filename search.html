@@ -73,13 +73,13 @@
             <select
               id="filter"
               class="search__sort"
-              onchange="filterMovies(event)"
+              onchange="sortMovies(event)"
             >
               <option value="" disabled selected>Sort</option>
-              <option value="TITLE">Title (Ascending)</option>
-              <option value="TITLE">Title (Descending)</option>
-              <option value="YEAR">Year (Ascending)</option>
-              <option value="YEAR">Year (Descending)</option>
+              <option value="TITLE_ASC">Title (Ascending)</option>
+              <option value="TITLE_DESC">Title (Descending)</option>
+              <option value="YEAR_ASC">Year (Ascending)</option>
+              <option value="YEAR_DESC">Year (Descending)</option>
             </select>
           </div>
           <div class="search__results--output search__results--hidden">

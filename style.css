@@ -549,3 +549,8 @@ h2 {
     margin-bottom: 16px;
     font-size: 16px;
 }
+
+.search__no-result {
+    font-size: 30px;
+    font-weight: bold;
+}
