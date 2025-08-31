@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-async function movieSearchResult(userInput) {
+async function movieSearchResult(userInput, sortBy) {
   const movieWrapper = document.querySelector(".search__results--wrapper");
 
   const getMovies = await fetch(
@@ -24,6 +24,21 @@ async function movieSearchResult(userInput) {
   }
 
   const movieArray = movieList.Search;
+  
+  switch (sortBy) {
+    case "TITLE_ASC":
+      movieArray.sort((a, b) => a.Title.localeCompare(b.Title));
+      break;
+    case "TITLE_DESC":
+      movieArray.sort((a, b) => b.Title.localeCompare(a.Title));
+      break;
+    case "YEAR_ASC":
+      movieArray.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+      break;
+    case "YEAR_DESC":
+      movieArray.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
+      break;
+  };
 
   const movieListHTML = movieArray
     .map((movie) => {
@@ -44,6 +59,9 @@ async function movieSearchResult(userInput) {
 }
 
 function sortMovies(event) {
-    const filter = event.target.value;
-    return filter;
+    const sortBy = event.target.value;
+    const userInput = document.querySelector(".search__input").value.trim();
+    if (!userInput) return;
+    
+    movieSearchResult(userInput, sortBy);
 }
