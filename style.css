@@ -26,6 +26,11 @@ html {
     margin: 0 24px;
 }
 
+.image__credit {
+    font-size: 10px;
+    text-align: right;
+}
+
 .theme__color {
     color: #6030b1;
 }
@@ -322,6 +327,54 @@ h2 {
 
 
 
+/* --- Popcorn Styling --- */
+
+
+
+#popcorn__container-1 {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+#popcorn__container-2 {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.popcorn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    will-change: transform;
+    animation: popcorn-pop 2s ease-out forwards;
+}
+
+@keyframes popcorn-pop {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    40% {
+        /* Pop diagonally up */
+        transform: translate(var(--pop-x), var(--pop-y)) scale(1.1) rotate(20deg);
+    }
+    100% {
+        /* Fall diagonally down */
+        transform: translate(var(--pop-x-end), var(--pop-y-end)) scale(1) rotate(0deg);
+    }
+}
+
+
+
 /* --- Search Page Styles --- */
 /* --- Search Page Navigation Styles --- */
 
@@ -331,7 +384,7 @@ h2 {
     width: 100%;
     height: auto;
     padding-bottom: 40px;
-    background-image: url(https://dev.d24jig8s1lr7n9.amplifyapp.com/img/carpark.8742e246.jpeg);
+    background-image: url(./assets/valerion-4k-projector-WtmyDlQshnM-unsplash.jpg);
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -464,28 +517,30 @@ h2 {
 }
 
 .search__result--box {
-    width: 20%;
+    width: 20vh;
+    height: 36vh;
     border: solid 2px;
     border-radius: 25px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin: 0 16px 16px 16px;
+    justify-content: space-between;
+    margin: 0 16px 32px 16px;
     text-align: center;
 }
 
 .search__result--img {
     width: 100%;
+    height: 350px;
+    overflow: hidden;
 }
 
 .search__result--title {
-    width: 100%;
-    font-size: 32px;
+    font-size: 16px;
 }
 
 .search__result--year {
-    width: 100%;
-    font-size: 24px;
+    margin-bottom: 16px;
+    font-size: 16px;
 }
