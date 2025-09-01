@@ -1,26 +1,25 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.querySelector(".search__input");
-  const resultsBox = document.getElementById("search__results--boxes");
-  const clickBrowse = document.querySelector(".search__results--row");
+function clickSearch() {
+  const input = document.getElementById("searchId");
+  userInput = input.value;
+  movieSearchResult(userInput);
+}
 
-  input.addEventListener("keyup", async (e) => {
-    const userInput = e.target.value.trim();
-    if (userInput.length === 0) {
-      resultsBox.classList.add("hide__boxes");
-      clickBrowse.classList.add("clear__all");
-      resultsBox.innerHTML = ""; // clear old results
-      return;
+function enterSearch() {
+  const input = document.getElementById("searchId");
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      userInput = input.value;
+      movieSearchResult(userInput);
     }
-    // Otherwise fetch movies
-    await movieSearchResult(userInput);
-  });
-});
-
-
+  })
+}
 
 async function movieSearchResult(userInput, sortBy) {
+  const resultsBox = document.getElementById("search__results--boxes");
   const click = document.querySelector(".search__results--row");
   click.classList.remove("clear__all");
+  resultsBox.classList.remove("hide__boxes");
 
   const movieWrapper = document.getElementById("search__results--boxes");
   const getMovies = await fetch(
@@ -95,8 +94,7 @@ async function movieSearchResult(userInput, sortBy) {
 // This function will generate detailed informatio about the movie
 // selected in the movieSearchResult function
 async function movieDetail(movieIndex) {
-  console.log("clicked");
-
+  
   const revealSearchBox = document.getElementById("search__results--boxes");
   revealSearchBox.classList.add("hide__boxes");
 
@@ -167,8 +165,9 @@ async function movieDetail(movieIndex) {
         </div>
       </div>
       <div class="movie__detail movie__plot">
+        <span class="movie__detail--bold">Plot:</span>
         ${detail.Plot}
-      </div>
+      </div>                                                                                                                                                                                                                                                
     </div>
   </div>`;
 

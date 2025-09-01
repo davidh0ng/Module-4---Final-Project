@@ -52,12 +52,20 @@
           </div>
           <div class="search__input--row">
             <h1 class="search__title">Browse Our Movies</h1>
-            <input
-              id="searchId"
-              class="search__input"
-              type="text"
-              placeholder="Search by Model, Make or Keyword"
-            />
+            <div class="search__input--wrapper">
+              <input
+                id="searchId"
+                class="search__input"
+                type="text"
+                placeholder="Search movie title: i.e. Superman"
+                onkeydown="enterSearch()"
+              />
+              <button class="search__icon--button button__hover" onclick="clickSearch()">
+                <figure>
+                  <i class="fa-solid fa-magnifying-glass search__icon--color"></i>
+                </figure>
+              </button>
+            </div>
           </div>
         </div>
       </div>
