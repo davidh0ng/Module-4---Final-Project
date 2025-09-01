@@ -99,7 +99,7 @@ async function movieDetail(movieIndex) {
   movieDetailsHTML.innerHTML = `
     <div class="movie__details--box">
     <img
-      src="${detail.Poster}"
+      src="${detail.Poster !== "404 (Not Found)" ? detail.Poster : "./assets/No-image-available.jpg"}"
       alt=""
       class="movie__img"
     />
@@ -155,4 +155,8 @@ function sortMovies(event) {
   if (!userInput) return;
 
   movieSearchResult(userInput, sortBy);
+}
+
+function clear(click) {
+  //when there is a click on the clear button the movie details should clear
 }
