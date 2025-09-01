@@ -1,17 +1,23 @@
-console.log("test");
-
 document.addEventListener("DOMContentLoaded", () => {
+
   const input = document.querySelector(".search__input");
+  const resultsBox = document.getElementById('search__results--boxes');
+
   input.addEventListener("keyup", async (e) => {
     const userInput = e.target.value.trim();
-    if (userInput.length > 0) {
-      await movieSearchResult(userInput);
+    if (userInput.length === 0) {
+      resultsBox.classList.add("hide__boxes");
+      resultsBox.innerHTML = ""; // clear old results
+      return;
     }
+    // Otherwise fetch movies
+    await movieSearchResult(userInput);
   });
 });
 
 async function movieSearchResult(userInput, sortBy) {
-  const movieWrapper = document.querySelector(".search__results--wrapper");
+
+  const movieWrapper = document.getElementById('search__results--boxes');
 
   const getMovies = await fetch(
     `https://omdbapi.com/?s=${userInput}&page=1&apikey=5c395d5b`
@@ -20,6 +26,7 @@ async function movieSearchResult(userInput, sortBy) {
 
   if (movieList.Response === "False") {
     movieWrapper.innerHTML = `<p class="search__no-result">No movies found.</p>`;
+    movieWrapper.classList.remove("hide__boxes");
     return;
   }
 
@@ -40,41 +47,59 @@ async function movieSearchResult(userInput, sortBy) {
       break;
   }
 
+  // Use data attributes instead of duplicate IDs.
+  // index and data-index="${index}" accomplishes this task.
   const movieListHTML = movieArray
-    .map((movie) => {
-      return `<button class="search__result--box search__hover--effect">
-          <figure class="search__result--img">
-          <img
-            src="${movie.Poster}"
-            alt=""
-          />
-          </figure>
+    .map((movie, index) => {
+      return `
+        <button class="search__result--box search__hover--effect" data-index="${index}">
+          <div class="search__result--img-container"> 
+            <figure class="search__result--img">
+              <img src="${movie.Poster}" alt="" />
+            </figure>
+          </div> 
           <h1 class="search__result--title">${movie.Title}</h1>
           <h2 class="search__result--year">${movie.Year}</h2>
         </button>`;
-    })
-    .join("");
+      }
+    )
+  .join("");
 
   movieWrapper.innerHTML = movieListHTML;
+
+  // Attach click listeners to all buttons. Needs to be different on all buttons
+  // Previously I used document.getElementById('movieClick')
+  // const clickInputs stores all the objects having the class .search__result--box
+  // Use .forEach to apply to button using the index
+  // the index is passed through the movieDetail function to apply the new innerHTML
+  const clickInputs = document.querySelectorAll(".search__result--box");
+  clickInputs.forEach((clickInput, index) => {
+    clickInput.addEventListener("click", () => {
+      movieDetail(movieArray[index]);
+    })
+  })
 }
 
-const clickMovie = document.querySelector(".search__result--box");
-const 
+// This function will generate detailed informatio about the movie
+// selected in the movieSearchResult function
+async function movieDetail(movieIndex) {
+  console.log("clicked");
 
-async function movieDetailResult(event) {
-  .classList.add(".search__results--hide")
-  const detailWrapper = document.querySelector(".search__results--wrapper");
+  const revealSearchBox = document.getElementById("search__results--boxes");
+  revealSearchBox.classList.add("hide__boxes");
 
-  const getMovieDetails = await fetch(
-    `https://omdbapi.com/?t=${userInput}&page=1&apikey=5c395d5b`
-  );
-  const movieDetailArr = await getMovieDetails.json();
+  const revealDetailBox = document.getElementById("search__results--details");
+  revealDetailBox.classList.add("hide__details");
 
-  console.log(movieDetailArr)
+  const getMovieDetails = await fetch(`https://omdbapi.com/?t=${movieIndex.Title}&page=1&apikey=5c395d5b`);
+  const detail = await getMovieDetails.json();
 
-  `<div class="movie__details--box">
+  let movieDetailsHTML = document.getElementById("search__results--details");
+
+  movieDetailsHTML.innerHTML = `
+    <div class="movie__details--box">
     <img
-      src="./assets/Zombie with Worm inside His Head.png"
+      src="${detail.Poster}"
       alt=""
       class="movie__img"
     />
@@ -82,50 +107,46 @@ async function movieDetailResult(event) {
       <div class="movie__details--top">
         <div class="movie__details--top-left">
           <div class="movie__detail movie__title">
-            <span class="movie__detail--bold">Title:</span> Inception
+            <span class="movie__detail--bold">Title:</span> ${detail.Title}
           </div>
           <div class="movie__detail movie__year">
-            <span class="movie__detail--bold">Year:</span> 2010
+            <span class="movie__detail--bold">Year:</span> ${detail.Year}
           </div>
           <div class="movie__detail movie__rated">
-            <span class="movie__detail--bold">Rated:</span> PG-13
+            <span class="movie__detail--bold">Rated:</span> ${detail.Rated}
           </div>
           <div class="movie__detail movie__runtime">
-            <span class="movie__detail--bold">Runtime:</span> 210 min
+            <span class="movie__detail--bold">Runtime:</span> ${detail.Runtime}
           </div>
           <div class="movie__detail movie__genre">
-            <span class="movie__detail--bold">Genre:</span> Action, Adventure,
-            Sci-Fi
+            <span class="movie__detail--bold">Genre:</span> ${detail.Genre}
           </div>
           <div class="movie__detail movie__director">
-            <span class="movie__detail--bold">Director:</span> Christopher Nolan
+            <span class="movie__detail--bold">Director:</span> ${detail.Director}
           </div>
         </div>
         <div class="movie__details--top-right">
           <div class="movie__detail movie__actors">
-            <span class="movie__detail--bold">Cast:</span> Leonardo DiCaprio,
-            Joseph Gordon-Levitt, Elliot Page
+            <span class="movie__detail--bold">Cast:</span> ${detail.Actors}
           </div>
           <div class="movie__detail movie__language">
-            <span class="movie__detail--bold">Languages:</span> English,
-            Japanese, French
+            <span class="movie__detail--bold">Languages:</span> ${detail.Languages}
           </div>
           <div class="movie__detail movie__imdbrating">
-            <span class="movie__detail--bold">IMDB Rating:</span> 8.8
+            <span class="movie__detail--bold">IMDB Rating:</span> ${detail.imdbRating}
           </div>
           <div class="movie__detail movie__boxoffice">
-            <span class="movie__detail--bold">Box Office:</span> $292,587,330
+            <span class="movie__detail--bold">Box Office:</span> ${detail.BoxOffice}
           </div>
         </div>
       </div>
       <div class="movie__detail movie__plot">
-        <span class="movie__detail--bold">Plot:</span> A thief who steals
-        corporate secrets through the use of dream-sharing technology is given
-        the inverse task of planting an idea into the mind of a C.E.O., but his
-        tragic past may doom the project and his team to disaster.
+        ${detail.Plot}
       </div>
     </div>
   </div>`;
+
+  revealDetailBox.classList.remove("hide__details");
 }
 
 function sortMovies(event) {
