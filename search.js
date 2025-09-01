@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const input = document.querySelector(".search__input");
-  const resultsBox = document.getElementById('search__results--boxes');
+  const resultsBox = document.getElementById("search__results--boxes");
 
   input.addEventListener("keyup", async (e) => {
     const userInput = e.target.value.trim();
@@ -16,8 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function movieSearchResult(userInput, sortBy) {
-
-  const movieWrapper = document.getElementById('search__results--boxes');
+  const movieWrapper = document.getElementById("search__results--boxes");
 
   const getMovies = await fetch(
     `https://omdbapi.com/?s=${userInput}&page=1&apikey=5c395d5b`
@@ -30,40 +28,46 @@ async function movieSearchResult(userInput, sortBy) {
     return;
   }
 
-  const movieArray = movieList.Search;
+  const movieArr = movieList.Search;
 
   switch (sortBy) {
     case "TITLE_ASC":
-      movieArray.sort((a, b) => a.Title.localeCompare(b.Title));
+      movieArr.sort((a, b) => a.Title.localeCompare(b.Title));
       break;
     case "TITLE_DESC":
-      movieArray.sort((a, b) => b.Title.localeCompare(a.Title));
+      movieArr.sort((a, b) => b.Title.localeCompare(a.Title));
       break;
     case "YEAR_ASC":
-      movieArray.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+      movieArr.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
       break;
     case "YEAR_DESC":
-      movieArray.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
+      movieArr.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
       break;
   }
 
+  let movieListHTML = [];
+
   // Use data attributes instead of duplicate IDs.
   // index and data-index="${index}" accomplishes this task.
-  const movieListHTML = movieArray
-    .map((movie, index) => {
-      return `
-        <button class="search__result--box search__hover--effect" data-index="${index}">
+  // Used forloop to reiterate through the array in movieArr 6 times and retrieve only 6 contents
+  for (i = 0; i <= 5; i++) {
+    movieListHTML[i] = movieArr[i];
+
+    movieListHTML[i] = `
+        <button class="search__result--box search__hover--effect" data-index="${i}">
           <div class="search__result--img-container"> 
             <figure class="search__result--img">
-              <img src="${movie.Poster}" alt="" />
+              <img src="${
+                movieArr[i].Poster !== "undefined"
+                  ? movieArr[i].Poster
+                  : "./assets/No-image-available.jpg"
+              }" alt="" />
             </figure>
           </div> 
-          <h1 class="search__result--title">${movie.Title}</h1>
-          <h2 class="search__result--year">${movie.Year}</h2>
+          <h1 class="search__result--title">${movieArr[i].Title}</h1>
+          <h2 class="search__result--year">${movieArr[i].Year}</h2>
         </button>`;
-      }
-    )
-  .join("");
+  }
 
   movieWrapper.innerHTML = movieListHTML;
 
@@ -75,9 +79,9 @@ async function movieSearchResult(userInput, sortBy) {
   const clickInputs = document.querySelectorAll(".search__result--box");
   clickInputs.forEach((clickInput, index) => {
     clickInput.addEventListener("click", () => {
-      movieDetail(movieArray[index]);
-    })
-  })
+      movieDetail(movieArr[index]);
+    });
+  });
 }
 
 // This function will generate detailed informatio about the movie
@@ -91,7 +95,9 @@ async function movieDetail(movieIndex) {
   const revealDetailBox = document.getElementById("search__results--details");
   revealDetailBox.classList.add("hide__details");
 
-  const getMovieDetails = await fetch(`https://omdbapi.com/?t=${movieIndex.Title}&page=1&apikey=5c395d5b`);
+  const getMovieDetails = await fetch(
+    `https://omdbapi.com/?t=${movieIndex.Title}&page=1&apikey=5c395d5b`
+  );
   const detail = await getMovieDetails.json();
 
   let movieDetailsHTML = document.getElementById("search__results--details");
@@ -99,7 +105,11 @@ async function movieDetail(movieIndex) {
   movieDetailsHTML.innerHTML = `
     <div class="movie__details--box">
     <img
-      src="${detail.Poster !== "404 (Not Found)" ? detail.Poster : "./assets/No-image-available.jpg"}"
+      src="${
+        detail.Poster !== "404 (Not Found)"
+          ? detail.Poster
+          : "./assets/No-image-available.jpg"
+      }"
       alt=""
       class="movie__img"
     />
@@ -122,7 +132,9 @@ async function movieDetail(movieIndex) {
             <span class="movie__detail--bold">Genre:</span> ${detail.Genre}
           </div>
           <div class="movie__detail movie__director">
-            <span class="movie__detail--bold">Director:</span> ${detail.Director}
+            <span class="movie__detail--bold">Director:</span> ${
+              detail.Director
+            }
           </div>
         </div>
         <div class="movie__details--top-right">
@@ -130,13 +142,19 @@ async function movieDetail(movieIndex) {
             <span class="movie__detail--bold">Cast:</span> ${detail.Actors}
           </div>
           <div class="movie__detail movie__language">
-            <span class="movie__detail--bold">Languages:</span> ${detail.Languages}
+            <span class="movie__detail--bold">Languages:</span> ${
+              detail.Languages
+            }
           </div>
           <div class="movie__detail movie__imdbrating">
-            <span class="movie__detail--bold">IMDB Rating:</span> ${detail.imdbRating}
+            <span class="movie__detail--bold">IMDB Rating:</span> ${
+              detail.imdbRating
+            }
           </div>
           <div class="movie__detail movie__boxoffice">
-            <span class="movie__detail--bold">Box Office:</span> ${detail.BoxOffice}
+            <span class="movie__detail--bold">Box Office:</span> ${
+              detail.BoxOffice
+            }
           </div>
         </div>
       </div>
