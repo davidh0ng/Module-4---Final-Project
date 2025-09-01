@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector(".search__input");
   const resultsBox = document.getElementById("search__results--boxes");
+  const clickBrowse = document.querySelector(".search__results--row");
 
   input.addEventListener("keyup", async (e) => {
     const userInput = e.target.value.trim();
     if (userInput.length === 0) {
       resultsBox.classList.add("hide__boxes");
+      clickBrowse.classList.add("clear__all");
       resultsBox.innerHTML = ""; // clear old results
       return;
     }
@@ -14,9 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-async function movieSearchResult(userInput, sortBy) {
-  const movieWrapper = document.getElementById("search__results--boxes");
 
+
+async function movieSearchResult(userInput, sortBy) {
+  const click = document.querySelector(".search__results--row");
+  click.classList.remove("clear__all");
+
+  const movieWrapper = document.getElementById("search__results--boxes");
   const getMovies = await fetch(
     `https://omdbapi.com/?s=${userInput}&page=1&apikey=5c395d5b`
   );
@@ -64,8 +70,10 @@ async function movieSearchResult(userInput, sortBy) {
               }" alt="" />
             </figure>
           </div> 
-          <h1 class="search__result--title">${movieArr[i].Title}</h1>
-          <h2 class="search__result--year">${movieArr[i].Year}</h2>
+          <div class="search__result--labels-container">
+            <h1 class="search__result--title">${movieArr[i].Title}</h1>
+            <h2 class="search__result--year">${movieArr[i].Year}</h2>
+          </div>
         </button>`;
   }
 
@@ -175,6 +183,14 @@ function sortMovies(event) {
   movieSearchResult(userInput, sortBy);
 }
 
-function clear(click) {
-  //when there is a click on the clear button the movie details should clear
+//when there is a click on the clear button the movie details should clear
+function clearMovies() {
+  const revealSearchBox = document.getElementById("search__results--boxes");
+  revealSearchBox.classList.add("hide__boxes");
+
+  const revealDetailBox = document.getElementById("search__results--details");
+  revealDetailBox.classList.add("hide__details");
+
+  const click = document.querySelector(".search__results--row");
+  click.classList.add("clear__all")
 }
