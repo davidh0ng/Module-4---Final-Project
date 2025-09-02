@@ -59,8 +59,6 @@ async function movieSearchResult(userInput, sortBy) {
   // index and data-index="${index}" accomplishes this task.
   // Used forloop to reiterate through the array in movieArr 6 times and retrieve only 6 contents
   for (i = 0; i < Math.min(6, movieArr.length) ; i++) {
-    console.log(movieArr.map(m => m.Poster));
-
     movieListHTML[i] = `
         <div class="search__result--box search__hover--effect" data-index="${i}">
           <div class="search__result--img-container"> 
