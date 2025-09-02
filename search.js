@@ -12,7 +12,7 @@ function enterSearch() {
       userInput = input.value.trim();
       movieSearchResult(userInput);
     }
-  })
+  });
 }
 
 async function movieSearchResult(userInput, sortBy) {
@@ -58,12 +58,16 @@ async function movieSearchResult(userInput, sortBy) {
   // Use data attributes instead of duplicate IDs.
   // index and data-index="${index}" accomplishes this task.
   // Used forloop to reiterate through the array in movieArr 6 times and retrieve only 6 contents
-  for (i = 0; i < Math.min(6, movieArr.length) ; i++) {
+  for (i = 0; i < Math.min(6, movieArr.length); i++) {
     movieListHTML[i] = `
         <div class="search__result--box search__hover--effect" data-index="${i}">
           <div class="search__result--img-container"> 
             <figure class="search__result--img">
-              <img src="${movieArr[i].Poster}" alt="" />
+              <img src="${
+                movieArr[i].Poster !== "N/A"
+                  ? movieArr[i].Poster
+                  : "./assets/No-image-available.png"
+              }" alt="" />
             </figure>
           </div> 
           <div class="search__result--labels-container">
@@ -91,7 +95,6 @@ async function movieSearchResult(userInput, sortBy) {
 // This function will generate detailed informatio about the movie
 // selected in the movieSearchResult function
 async function movieDetail(movieIndex) {
-  
   const revealSearchBox = document.getElementById("search__results--boxes");
   revealSearchBox.classList.add("hide__boxes");
 
@@ -188,5 +191,5 @@ function clearMovies() {
   revealDetailBox.classList.add("hide__details");
 
   const click = document.querySelector(".search__results--row");
-  click.classList.add("clear__all")
+  click.classList.add("clear__all");
 }
