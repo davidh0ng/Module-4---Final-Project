@@ -373,15 +373,19 @@ h2 {
 
 .search__input--row {
     width: 100%;
-    max-width: 1000px;
-    margin: auto;
+    max-width: 700px;
     padding-top: 48px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 
 .search__input--wrapper {
     position: relative;
     width: 100%;
+    display: flex;
 }
 
 .search__title {
@@ -392,13 +396,13 @@ h2 {
 
 .search__input--wrapper {
     position: relative;
+    width: 100%;
 }
 
 .search__input {
     padding: 0 24px;
     font-size: 24px;
     width: 100%;
-    max-width: 600px;
     height: 70px;
     border-radius: 50px;
 }
@@ -410,19 +414,29 @@ h2 {
     background-color: white;
     border-radius: 50px;
     position: absolute;
-    top: 0.5vh;
-    transform: translateX(-110%);
+    top: 5px;
+    right: 156px;
     transition: all 300ms ease;
-}
-
-.search__icon--position {
-    position: absolute;
-    top: 20%;
-    right: 22%;
 }
 
 .search__icon--color {
     color: #6030b1;
+}
+
+.clear__button {
+    font-size: 16px;
+    font-weight: 550;
+    width: 20%;
+    height: 70px;
+    letter-spacing: 2px;
+    color: white;
+    background-color: #6030b1;
+    padding: 8px 32px;
+    text-align: center;
+    border: solid 3px #6030b1;
+    border-radius: 50px;
+    margin-left: 16px;
+    transition: all 300ms ease-in-out
 }
 
 
@@ -490,13 +504,13 @@ h2 {
     width: 25%;
     min-width: 275px;
     max-width: 275px;
+    height: 500px;
     border: solid 2px;
     border-radius: 25px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     margin: 0 32px 64px 32px;
     text-align: center;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 1);
@@ -523,13 +537,13 @@ h2 {
 .search__result--img-container {
     position: relative;
     width: 100%;
-    height: 80%;
+    height:  375px;
+    overflow: hidden;
 }
 
 .search__result--img {
     position: absolute;
     width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
     overflow: hidden;
@@ -537,15 +551,16 @@ h2 {
 
 .search__result--labels-container {
     width: 100%;
-    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .search__result--title {
-    width: 85%;
+    width: 100%;
     height: 75px;
+    padding: 12px 12px;
     line-height: 1.2;
     font-size: 20px;
     display: grid;
@@ -555,7 +570,7 @@ h2 {
 .search__result--year {
     width: 85%;
     font-size: 20px;
-    padding-bottom: 16px;
+    padding: 0 12px 12px 12px;
 }
 
 .search__no-result {

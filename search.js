@@ -9,17 +9,20 @@ function enterSearch() {
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      userInput = input.value;
+      userInput = input.value.trim();
       movieSearchResult(userInput);
     }
   })
 }
 
 async function movieSearchResult(userInput, sortBy) {
-  const resultsBox = document.getElementById("search__results--boxes");
   const click = document.querySelector(".search__results--row");
+  const resultsBox = document.getElementById("search__results--boxes");
+  const detailBox = document.getElementById("search__results--details");
+
   click.classList.remove("clear__all");
   resultsBox.classList.remove("hide__boxes");
+  detailBox.classList.add("hide__details");
 
   const movieWrapper = document.getElementById("search__results--boxes");
   const getMovies = await fetch(
@@ -55,28 +58,24 @@ async function movieSearchResult(userInput, sortBy) {
   // Use data attributes instead of duplicate IDs.
   // index and data-index="${index}" accomplishes this task.
   // Used forloop to reiterate through the array in movieArr 6 times and retrieve only 6 contents
-  for (i = 0; i <= 5; i++) {
-    movieListHTML[i] = movieArr[i];
+  for (i = 0; i < Math.min(6, movieArr.length) ; i++) {
+    console.log(movieArr.map(m => m.Poster));
 
     movieListHTML[i] = `
-        <button class="search__result--box search__hover--effect" data-index="${i}">
+        <div class="search__result--box search__hover--effect" data-index="${i}">
           <div class="search__result--img-container"> 
             <figure class="search__result--img">
-              <img src="${
-                movieArr[i].Poster !== "undefined"
-                  ? movieArr[i].Poster
-                  : "./assets/No-image-available.jpg"
-              }" alt="" />
+              <img src="${movieArr[i].Poster}" alt="" />
             </figure>
           </div> 
           <div class="search__result--labels-container">
             <h1 class="search__result--title">${movieArr[i].Title}</h1>
             <h2 class="search__result--year">${movieArr[i].Year}</h2>
           </div>
-        </button>`;
+        </div>`;
   }
 
-  movieWrapper.innerHTML = movieListHTML;
+  movieWrapper.innerHTML = movieListHTML.join("");
 
   // Attach click listeners to all buttons. Needs to be different on all buttons
   // Previously I used document.getElementById('movieClick')
